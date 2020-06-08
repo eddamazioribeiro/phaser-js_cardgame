@@ -1,4 +1,4 @@
-import CardDraggable from '../js/CardDraggable.js';
+import CardPlayer from '../js/CardPlayer.js';
 
 export default class MainScene extends Phaser.Scene {
     constructor() {
@@ -24,13 +24,14 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
-        this.player = new CardDraggable({
+        this.player = new CardPlayer({
             scene: this,
             name: 'Paladin',
             x: this.game.config.width / 2,
             y: 200,
             card: 'playercard',
             image: 'paladin',
+            health: 16,
             depth: 1,
             ondragend: (pointer, gameObject) => {
 
