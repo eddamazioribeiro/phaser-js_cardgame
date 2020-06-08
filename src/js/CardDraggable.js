@@ -23,7 +23,7 @@ export default class CardDraggable extends CardBase {
             }
         });
         this.scene.input.on('dragend', (pointer, gameObject) => {
-            this.dragging = false;
+            this.dragging = true;
             gameObject.ondragend(pointer, gameObject);
         });
     }

@@ -1,10 +1,11 @@
-export default class CardBase extends Phaser.GameObjects.Container {
+const GameObjects = Phaser.GameObjects;
+
+export default class CardBase extends GameObjects.Container {
     constructor(data) {        
         let {scene, x, y, name, card, image, depth} = data;
-        let spriteCard = new Phaser.GameObjects.Sprite(scene, 0, 0, card);
-        let spriteImage = new Phaser.GameObjects.Sprite(scene, 0, 20, image);
-        let textName = 
-            new Phaser.GameObjects.BitmapText(scene, 0, 0, 'pressstart', name, 16, Phaser.GameObjects.BitmapText.ALIGN_CENTER);
+        let spriteCard = new GameObjects.Sprite(scene, 0, 0, card);
+        let spriteImage = new GameObjects.Sprite(scene, 0, 20, image);
+        let textName = new GameObjects.BitmapText(scene,0, 0, 'pressstart', name, 16, GameObjects.BitmapText.ALIGN_CENTER);
         
         super(scene, x, y, [spriteCard, spriteImage, textName]);
 
