@@ -1,5 +1,6 @@
 import CardPlayer from '../js/CardPlayer.js';
 import CardGrid from '../js/CardGrid.js';
+import Grid from '../js/Grid.js';
 
 export default class MainScene extends Phaser.Scene {
     constructor() {
@@ -10,7 +11,7 @@ export default class MainScene extends Phaser.Scene {
         this.load.image('armor', 'src/assets/armor.png');
         this.load.image('card', 'src/assets/card.png');
         this.load.image('dead', 'src/assets/dead.png');
-        this.load.image('deadknight', 'src/assets/deathknight.png');
+        this.load.image('deathknight', 'src/assets/deathknight.png');
         this.load.image('firedrake', 'src/assets/firedrake.png');
         this.load.image('goldendragon', 'src/assets/goldendragon.png');
         this.load.image('healingpotion', 'src/assets/healingpotion.png');
@@ -25,11 +26,17 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
+        this.card = new Grid({
+            scene: this,
+            columns: 3,
+            rows: 3
+        });
+
         this.player = new CardPlayer({
             scene: this,
-            name: 'Paladin',
+            name: 'Warrior of Light',
             x: this.game.config.width / 2,
-            y: 200,
+            y: (this.game.config.height / 2) + 350,
             card: 'playercard',
             image: 'paladin',
             health: 16,
@@ -37,16 +44,6 @@ export default class MainScene extends Phaser.Scene {
             ondragend: (pointer, gameObject) => {
 
             }
-        });
-
-        let testCard = new CardGrid({
-            scene: this,
-            name: 'Health Potion',
-            x: 200,
-            y: 200,
-            card: 'card',
-            image: 'healingpotion',
-            value: 12
         });
     }
 };

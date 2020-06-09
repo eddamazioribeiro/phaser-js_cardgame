@@ -21,7 +21,7 @@ export default class CardBase extends GameObjects.Container {
     set cardName(name) {
         this._cardName = name;
         this.textName.text = this._cardName;
-        this.textName.maxWidth = this.spriteCard.maxWidth;
+        this.textName.maxWidth = this.spriteCard.width;
         this.textName.tint = 0;
         this.textName.x = -this.textName.width / 2;
         this.textName.y = 120 - this.textName.height;
