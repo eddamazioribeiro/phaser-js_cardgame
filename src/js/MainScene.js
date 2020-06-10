@@ -1,6 +1,7 @@
 import CardPlayer from '../js/CardPlayer.js';
 import CardGrid from '../js/CardGrid.js';
 import Grid from '../js/Grid.js';
+import {AddRestartButton} from '../js/RestartButton.js';
 
 export default class MainScene extends Phaser.Scene {
     constructor() {
@@ -45,7 +46,7 @@ export default class MainScene extends Phaser.Scene {
                 this.player.x = this.player.originalX;
                 this.player.y = this.player.originalY;
 
-                if (this.highlighted.d) {
+                if (this.highlighted) {
                     this.highlighted.selected = true;
 
                     switch(this.highlighted.cardtype) {
@@ -63,9 +64,12 @@ export default class MainScene extends Phaser.Scene {
                             break;
                     }
 
-                    this.grid.fadeFrontRow();
+                    if (this.player.dead) {
+                        AddRestartButton(this);
+                    } else {
+                        this.grid.fadeFrontRow();
+                    }
                 }
-
             }
         });
     }
