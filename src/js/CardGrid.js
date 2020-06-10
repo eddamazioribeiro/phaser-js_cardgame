@@ -10,7 +10,7 @@ export default class CardGrid extends CardBase {
         this.textValue = new GameObjects.BitmapText(this.scene, 0, -100, 'pressstart', value);
         this.add(this.textValue);
         this.value = value;
-        this.cardType = type;
+        this.cardtype = type;
     }
 
     set value(value) {
