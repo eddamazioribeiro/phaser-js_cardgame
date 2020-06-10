@@ -26,7 +26,7 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create() {
-        this.card = new Grid({
+        this.grid = new Grid({
             scene: this,
             columns: 3,
             rows: 3
@@ -42,8 +42,50 @@ export default class MainScene extends Phaser.Scene {
             health: 16,
             depth: 1,
             ondragend: (pointer, gameObject) => {
+                this.player.x = this.player.originalX;
+                this.player.y = this.player.originalY;
 
+                if (this.highlighted) {
+                    switch(this.highlighted.cardtype) {
+                        case 'attack':
+                            this.player.attack(this.highlighted.value);
+                            this.highlighted.dead = true;
+                            break;
+                        case 'heal':
+                            this.player.health = 
+                                Math.min(this.player.health + this.highlighted.value,
+                                        this.player.maxHealth);
+                            break;
+                        case 'armor':
+                            this.player.armor = this.highlighted.value;
+                            break;
+                    }
+                }
             }
         });
+    }
+    
+    update(time, delta) {
+        this.grid.cards[0].highlighted = false;
+        this.grid.cards[1].highlighted = false;
+        this.grid.cards[2].highlighted = false;
+        this.highlighted = null;
+
+        let columnWidth = this.game.config.width / this.grid.columns;
+        let playerPosX = this.player.x;
+        let playerPosY = this.player.y;
+
+        if (playerPosY < 700) {
+            if (playerPosX < columnWidth) {
+                this.grid.cards[0].highlighted = true;
+                this.highlighted = this.grid.cards[0];
+            } else if (playerPosX > columnWidth * 2) {
+                this.grid.cards[2].highlighted = true;
+                this.highlighted = this.grid.cards[2];
+            } else {
+                this.grid.cards[1].highlighted = true;
+                this.highlighted = this.grid.cards[1];               
+            }
+        }
     }
 };
