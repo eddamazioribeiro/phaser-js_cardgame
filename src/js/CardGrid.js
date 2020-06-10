@@ -34,4 +34,10 @@ export default class CardGrid extends CardBase {
             this.spriteImage.tint = 0xffffff;
         }
     }
+
+    set dead(isDead) {
+        if (isDead) {
+            this.deadAnimation();
+        }
+    }
 }

@@ -45,7 +45,7 @@ export default class MainScene extends Phaser.Scene {
                 this.player.x = this.player.originalX;
                 this.player.y = this.player.originalY;
 
-                if (this.highlighted != null) {
+                if (this.highlighted.d) {
                     this.highlighted.selected = true;
 
                     switch(this.highlighted.cardtype) {

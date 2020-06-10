@@ -26,4 +26,17 @@ export default class CardBase extends GameObjects.Container {
         this.textName.x = -this.textName.width / 2;
         this.textName.y = 120 - this.textName.height;
     }
+
+    deadAnimation() {
+        this.scene.tweens.add({
+            targets: this.spriteImage,
+            alpha: 0,
+            duration: 100,
+            repeat: 1,
+            yoyo: true,
+            onComplete: () => {
+                this.spriteImage.setTexture('dead');
+            }
+        });
+    }
 }
